@@ -1,56 +1,19 @@
---Config {
---	font = "xft:DejaVu Sans Mono;size=10"
---       , additionalFonts = []
---       , borderColor = "black"
---       , border = TopB
---       , bgColor = "black"
---       , fgColor = "grey"
---       , alpha = 255
---       , position = Top
---       , textOffset = -1
---       , iconOffset = -1
---       , lowerOnStart = False
---       , pickBroadest = False
---       , persistent = False
---       , hideOnStart = False
---       , iconRoot = "."
---       , allDesktops = True
---       , overrideRedirect = True
---       , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C",
---                                          "-L","18","-H","25",
---                                          "--normal","green",
---                                          "--high","red",
---                                          "--low","lightblue"] 36000
---                    , Run Network "eth0" ["-L","0","-H","32",
---                                          "--normal","green","--high","red"] 10
---                    , Run Network "eth1" ["-L","0","-H","32",
---                                          "--normal","green","--high","red"] 10
---                    , Run Cpu ["-L","3","-H","50",
---                               "--normal","green","--high","red"] 10
---                    , Run Memory ["-t","Mem: <usedratio>%"] 10
---                    , Run Swap [] 10
---                    , Run Com "uname" ["-s","-r"] "" 36000
---                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
---                    ]
---       , sepChar = "%"
---       , alignSep = "}{"
---       , template = "%cpu% | %memory% * %swap% | %eth0% - %eth1% }\
---                    \{ <fc=#ee9a00>%date%</fc>| %EGPF% | %uname%"
---       }
 Config { 
-
    -- appearance
      font =         "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
+   , additionalFonts = [ "xft:FontAwesome:size=9:antialias=true" ]
    , bgColor =      "black"
-   , fgColor =      "#646464"
+   , fgColor =      "#FFFFFF"
    , position =     Top
    , border =       BottomB
-   , borderColor =  "#646464"
-
+   , borderColor =  "#000000"
+   -- icons
+   , iconOffset = 10
+   , iconRoot = "/home/vid/.config/xmobar/icons"
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %RJTT% | %date% || %kbd% "
+   , template = "<fn=1></fn>%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %RJTT% | %date% || %kbd% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -90,7 +53,7 @@ Config {
                              ] 10
 
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "Cpu: <total0>%|<total1>%"
+        , Run MultiCpu       [ "--template" , "i<fc=#aaaaaa><icon=cpu.xbm/>cpu</fc><total>" -- "--template" , "Cpu: <total0>%|<total1>%|<total2>%|<total3>%"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
                              , "--low"      , "darkgreen"
@@ -117,7 +80,7 @@ Config {
                              ] 10
 
         -- battery monitor
-        , Run Battery        [ "--template" , "Batt: <acstatus>"
+        , Run Battery        [ "--template" , "Batt: <acstatus><watts> (<left>%)"
                              , "--Low"      , "10"        -- units: %
                              , "--High"     , "80"        -- units: %
                              , "--low"      , "darkred"
