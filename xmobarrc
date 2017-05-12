@@ -13,7 +13,8 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "<fn=1></fn>%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %RJTT% | %date% || %kbd% "
+   --, template = "%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %RJTT% | %date% || %kbd% "
+   , template = "%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %date% | %kbd% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -40,69 +41,69 @@ Config {
    , commands = 
 
         -- weather monitor
-        [ Run Weather "RJTT" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
-                             ] 36000
+        [ Run Weather "TXL"   [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
+                              ] 36000
 
         -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
-                             , "--Low"      , "1000"       -- units: B/s
-                             , "--High"     , "5000"       -- units: B/s
-                             , "--low"      , "darkgreen"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
-                             ] 10
+        , Run DynNetwork      [ "--template" , "<dev>: <fn=1></fn> <tx> <fn=1></fn> <rx>"
+                              , "--Low"      , "1000"       -- units: B/s
+                              , "--High"     , "5000"       -- units: B/s
+                              , "--low"      , "darkgreen"
+                              , "--normal"   , "darkorange"
+                              , "--high"     , "darkred"
+                              , "-S", "True"
+                              ] 10
 
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "i<fc=#aaaaaa><icon=cpu.xbm/>cpu</fc><total>" -- "--template" , "Cpu: <total0>%|<total1>%|<total2>%|<total3>%"
-                             , "--Low"      , "50"         -- units: %
-                             , "--High"     , "85"         -- units: %
-                             , "--low"      , "darkgreen"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
-                             ] 10
+        , Run MultiCpu        [ "--template"
+                              , "<fn=1></fn> <autototal>"
+                              --, "--load-icon-patterns", "<"
+                              --, "multi<fn=1></fn><total>" -- "
+                              -- , "<fn=1></fn> <total>" -- "
+                              --, "<fn=1></fn> <total0>% <total1>% <total2>% <total3>%" -- "
+                              --, "<fn=1></fn><total0>%|<fn=1></fn><total1>%|<fn=1></fn><total2>%|<fn=1></fn><total3>%"
+                              , "--Low"      , "50"         -- units: %
+                              , "--High"     , "85"         -- units: %
+                              , "--low"      , "darkgreen"
+                              , "--normal"   , "darkorange"
+                              , "--high"     , "darkred"
+                              ] 10
 
         -- cpu core temperature monitor
-        , Run CoreTemp       [ "--template" , "Temp: <core0>°C|<core1>°C"
-                             , "--Low"      , "70"        -- units: °C
-                             , "--High"     , "80"        -- units: °C
-                             , "--low"      , "darkgreen"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
-                             ] 50
+        , Run CoreTemp        [ "--template"
+                              --, "<fn=1></fn> <core0>°C <fn=1></fn> <core1>°C <fn=1></fn> <core2>°C <fn=1></fn> <core3>°C"
+                              , "<fn=1></fn> <core0>°C <core1>°C"
+                              , "--Low"      , "40"        -- units: °C
+                              , "--High"     , "60"        -- units: °C
+                              , "--low"      , "lightblue"
+                              , "--normal"   , "white"
+                              , "--high"     , "red"
+                              ] 50
 
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"Mem: <usedratio>%"
-                             , "--Low"      , "20"        -- units: %
-                             , "--High"     , "90"        -- units: %
-                             , "--low"      , "darkgreen"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
-                             ] 10
+        , Run Memory          [ "--template" ,"<fn=1></fn> <usedratio>%"
+                              , "--Low"      , "20"        -- units: %
+                              , "--High"     , "90"        -- units: %
+                              , "--low"      , "darkgreen"
+                              , "--normal"   , "darkorange"
+                              , "--high"     , "darkred"
+                              ] 10
 
         -- battery monitor
-        , Run Battery        [ "--template" , "Batt: <acstatus><watts> (<left>%)"
-                             , "--Low"      , "10"        -- units: %
-                             , "--High"     , "80"        -- units: %
-                             , "--low"      , "darkred"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkgreen"
-
-                             , "--" -- battery specific options
-                                       -- discharging status
-                                       , "-o"	, "<left>% (<timeleft>)"
-                                       -- AC "on" status
-                                       , "-O"	, "<fc=#dAA520>Charging</fc>"
-                                       -- charged status
-                                       , "-i"	, "<fc=#006000>Charged</fc>"
-                             ] 50
+        , Run Battery         [ "--template", "<leftipat>"
+                              , "--"
+                              , "--on-icon-pattern", "<fn=1></fn> <left>% <fn=1></fn> <timeleft>"
+                              , "--off-icon-pattern", "<fn=1></fn> <left>%"
+                              , "--idle-icon-pattern", "<fn=1></fn>" -- power plug
+                              ] 10
 
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
+        , Run Date           "<fc=#ABABAB><fn=1></fn> %F (%a) <fn=1></fn> %T</fc>" "date" 10
 
         -- keyboard layout indicator
-        , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
-                             , ("us"         , "<fc=#8B0000>US</fc>")
+        , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B><fn=1></fn> DV</fc>")
+                             , ("us"         , "<fc=#8B0000><fn=1></fn> US</fc>")
                              ]
         ]
    }
