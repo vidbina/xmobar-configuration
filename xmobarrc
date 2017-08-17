@@ -1,9 +1,9 @@
-Config { 
+Config {
    -- appearance
-     font =         "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
+     font =         "xft:Mono:size=8:bold:antialias=true"
    , additionalFonts = [ "xft:FontAwesome:size=9:antialias=true" ]
-   , bgColor =      "black"
-   , fgColor =      "#FFFFFF"
+   , bgColor =      "#212121"
+   , fgColor =      "#bdbdbd"
    , position =     Top
    , border =       BottomB
    , borderColor =  "#000000"
@@ -45,18 +45,19 @@ Config {
                               ] 36000
 
         -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork      [ "--template" , "<dev>: <fn=1></fn> <tx> <fn=1></fn> <rx>"
+        , Run DynNetwork      [ "--template" ,
+				"<dev>: <fc=#03a9f4><fn=1></fn></fc> <tx> <fc=#03a9f4><fn=1></fn></fc> <rx>"
                               , "--Low"      , "1000"       -- units: B/s
                               , "--High"     , "5000"       -- units: B/s
-                              , "--low"      , "darkgreen"
-                              , "--normal"   , "darkorange"
-                              , "--high"     , "darkred"
+                              , "--low"      , "#4caf50"
+                              , "--normal"   , "#ffc107"
+                              , "--high"     , "#e91e63"
                               , "-S", "True"
                               ] 10
 
         -- cpu activity monitor
         , Run MultiCpu        [ "--template"
-                              , "<fn=1></fn> <autototal>"
+                              , "<fc=#03a9f4><fn=1></fn></fc> <autototal>"
                               --, "--load-icon-patterns", "<"
                               --, "multi<fn=1></fn><total>" -- "
                               -- , "<fn=1></fn> <total>" -- "
@@ -64,42 +65,43 @@ Config {
                               --, "<fn=1></fn><total0>%|<fn=1></fn><total1>%|<fn=1></fn><total2>%|<fn=1></fn><total3>%"
                               , "--Low"      , "50"         -- units: %
                               , "--High"     , "85"         -- units: %
-                              , "--low"      , "darkgreen"
-                              , "--normal"   , "darkorange"
-                              , "--high"     , "darkred"
+                              , "--low"      , "#4caf50"
+                              , "--normal"   , "#ffc107"
+                              , "--high"     , "#e91e63"
                               ] 10
 
         -- cpu core temperature monitor
         , Run CoreTemp        [ "--template"
                               --, "<fn=1></fn> <core0>°C <fn=1></fn> <core1>°C <fn=1></fn> <core2>°C <fn=1></fn> <core3>°C"
-                              , "<fn=1></fn> <core0>°C <core1>°C"
+                              , "<fc=#03a9f4><fn=1></fn></fc> <core0>°C <core1>°C"
                               , "--Low"      , "40"        -- units: °C
                               , "--High"     , "60"        -- units: °C
-                              , "--low"      , "lightblue"
-                              , "--normal"   , "white"
-                              , "--high"     , "red"
+                              , "--low"      , "#4caf50"
+                              , "--normal"   , "#ffc107"
+                              , "--high"     , "#e91e63"
+                              , "-b", "red"
                               ] 50
 
         -- memory usage monitor
-        , Run Memory          [ "--template" ,"<fn=1></fn> <usedratio>%"
+        , Run Memory          [ "--template" ,"<fc=#03a9f4><fn=1></fn></fc> <usedratio>%"
                               , "--Low"      , "20"        -- units: %
                               , "--High"     , "90"        -- units: %
-                              , "--low"      , "darkgreen"
-                              , "--normal"   , "darkorange"
-                              , "--high"     , "darkred"
+                              , "--low"      , "#4caf50"
+                              , "--normal"   , "#ffc107"
+                              , "--high"     , "#e91e63"
                               ] 10
 
         -- battery monitor
         , Run Battery         [ "--template", "<leftipat>"
                               , "--"
-                              , "--on-icon-pattern", "<fn=1></fn> <left>% <fn=1></fn> <timeleft>"
-                              , "--off-icon-pattern", "<fn=1></fn> <left>%"
-                              , "--idle-icon-pattern", "<fn=1></fn>" -- power plug
+                              , "--on-icon-pattern", "<fc=#8bc34a><fn=1></fn></fc> <left>% <fn=1></fn> <timeleft>"
+                              , "--off-icon-pattern", "<fc=#ffc107><fn=1></fn></fc> <left>%"
+                              , "--idle-icon-pattern", "<fc=#03a9f4><fn=1></fn></fc>" -- power plug
                               ] 10
 
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#ABABAB><fn=1></fn> %F (%a) <fn=1></fn> %T</fc>" "date" 10
+        , Run Date           "<fc=#03a9f4><fn=1></fn> %F (%a) <fn=1></fn> %T</fc>" "date" 10
 
         -- keyboard layout indicator
         , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B><fn=1></fn> DV</fc>")
