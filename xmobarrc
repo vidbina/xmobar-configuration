@@ -13,8 +13,8 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   --, template = "%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %RJTT% | %date% || %kbd% "
-   , template = "%battery% | %multicpu% | %coretemp% | %memory% | %default:Master% | %dynnetwork% }{ %date% | %kbd% "
+   --, template = "%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork%| %StdinReader% }{ %RJTT% | %date% || %kbd% "
+   , template = "%battery% | %multicpu% - %cpufreq% | %coretemp% | %memory% | %default:Master% | %dynnetwork% | %StdinReader% }{ %date% | %kbd% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -69,7 +69,8 @@ Config {
                               , "--normal"   , "#ffc107"
                               , "--high"     , "#e91e63"
                               ] 10
-
+        , Run CpuFreq         [ "-t", "<cpu0> <cpu1> <cpu2> <cpu3> GHz"
+                              ] 5
         -- cpu core temperature monitor
         , Run CoreTemp        [ "--template"
                               --, "<fn=1></fn> <core0>°C <fn=1></fn> <core1>°C <fn=1></fn> <core2>°C <fn=1></fn> <core3>°C"
