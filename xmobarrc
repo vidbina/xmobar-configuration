@@ -13,8 +13,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   --, template = "%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork%| %StdinReader% }{ %RJTT% | %date% || %kbd% "
-   , template = "%battery% | %multicpu% - %cpufreq% | %coretemp% | %memory% | %default:Master% | %dynnetwork% | %StdinReader% }{ %date% | %kbd% "
+   template = "%StdinReader% | %multicpu% | %coretemp% | %memory% | %default:Master% | %dynnetwork% }{ %date% | %kbd% | %battery%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -110,5 +109,6 @@ Config {
         , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B><fn=1></fn> DV</fc>")
                              , ("us"         , "<fc=#8B0000><fn=1></fn> US</fc>")
                              ]
-        ]
+        , Run StdinReader
+        ],
    }
