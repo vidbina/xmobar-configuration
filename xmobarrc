@@ -68,8 +68,8 @@ Config {
                               , "--normal"   , "#ffc107"
                               , "--high"     , "#e91e63"
                               ] 10
-        , Run CpuFreq         [ "-t", "<cpu0> <cpu1> <cpu2> <cpu3> GHz"
-                              ] 5
+        --, Run CpuFreq         [ "-t", "<cpu0> <cpu1> <cpu2> <cpu3> GHz"
+        --                      ] 5
         -- cpu core temperature monitor
         , Run CoreTemp        [ "--template"
                               --, "<fn=1></fn> <core0>°C <fn=1></fn> <core1>°C <fn=1></fn> <core2>°C <fn=1></fn> <core3>°C"
@@ -99,7 +99,14 @@ Config {
                               , "--idle-icon-pattern", "<fc=#03a9f4><fn=1></fn></fc>" -- power plug
                               ] 10
 
-        , Run Volume          "default" "Master" [] 10
+        , Run Volume          "default" "Master"
+                              [ "--template" , "<volume>% <status>"
+                              , "--"
+                              --"-0", "",
+                              --"--off", "",
+                              , "--on", "<fn=1></fn>"
+                              , "--off", "<fn=1></fn>"
+                              ] 10
 
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
