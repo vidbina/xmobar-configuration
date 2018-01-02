@@ -127,6 +127,9 @@ Config {
         , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B><fn=1></fn> DV</fc>")
                              , ("us"         , "<fc=#8B0000><fn=1></fn> US</fc>")
                              ]
+        , Run PipeReader "BTC/EUR:/tmp/crypto/BTC-EUR" "BTCEUR"
+        , Run PipeReader "ETH/EUR:/tmp/crypto/ETH-EUR" "ETHEUR"
+        , Run PipeReader "LTC/EUR:/tmp/crypto/LTC-EUR" "LTCEUR"
         , Run StdinReader
         ],
    }
