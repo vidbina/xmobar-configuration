@@ -17,7 +17,7 @@ Config {
      "%StdinReader% \
      \| %multicpu% | %coretemp% | %memory% | %default:Master% | %dynnetwork% }\
      \{<fc=#ECBE13><fn=1></fn></fc> %BTCEUR% | %ETHEUR% \
-     \| %date% | %kbd% | %battery%"
+     \| %date% | %kbd% | %battery%                 "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
