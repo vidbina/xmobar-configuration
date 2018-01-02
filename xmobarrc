@@ -13,7 +13,11 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   template = "%StdinReader% | %multicpu% | %coretemp% | %memory% | %default:Master% | %dynnetwork% }{ %date% | %kbd% | %battery%"
+   template =
+     "%StdinReader% \
+     \| %multicpu% | %coretemp% | %memory% | %default:Master% | %dynnetwork% }\
+     \{<fc=#ECBE13><fn=1></fn></fc> %BTCEUR% | %ETHEUR% \
+     \| %date% | %kbd% | %battery%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -40,12 +44,16 @@ Config {
    , commands = 
 
         -- weather monitor
-        [ Run Weather "TXL"   [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
+        [ Run Weather "TXL"   [ "--template", "<skyCondition> | \
+                                              \<fc=#4682B4><tempC></fc>°C | \
+                                              \<fc=#4682B4><rh></fc>% | \
+                                              \<fc=#4682B4><pressure></fc>hPa"
                               ] 36000
 
         -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork      [ "--template" ,
-				"<dev>: <fc=#03a9f4><fn=1></fn></fc> <tx> <fc=#03a9f4><fn=1></fn></fc> <rx>"
+        , Run DynNetwork      [ "--template" , "<dev>: \
+                                                \<fc=#03a9f4><fn=1></fn></fc> <tx> \
+                                                \<fc=#03a9f4><fn=1></fn></fc> <rx>"
                               , "--Low"      , "1000"       -- units: B/s
                               , "--High"     , "5000"       -- units: B/s
                               , "--low"      , "#4caf50"
@@ -61,7 +69,10 @@ Config {
                               --, "multi<fn=1></fn><total>" -- "
                               -- , "<fn=1></fn> <total>" -- "
                               --, "<fn=1></fn> <total0>% <total1>% <total2>% <total3>%" -- "
-                              --, "<fn=1></fn><total0>%|<fn=1></fn><total1>%|<fn=1></fn><total2>%|<fn=1></fn><total3>%"
+                              --, "<fn=1></fn><total0>%|\
+                              --  \<fn=1></fn><total1>%|\
+                              --  \<fn=1></fn><total2>%|\
+                              --  \<fn=1></fn><total3>%"
                               , "--Low"      , "50"         -- units: %
                               , "--High"     , "85"         -- units: %
                               , "--low"      , "#4caf50"
