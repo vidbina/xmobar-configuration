@@ -134,3 +134,4 @@ Config {
         , Run StdinReader
         ],
    }
+-- vim: ft=haskell
