@@ -16,7 +16,8 @@ Config {
    template =
      "%StdinReader% \
      \| %multicpu% | %coretemp% | %memory% | %default:Master% | %dynnetwork% }\
-     \{<fc=#ECBE13><fn=1></fn></fc> %BTCEUR% | %ETHEUR% \
+     \{ \
+     -- <fc=#ECBE13><fn=1></fn></fc> %BTCEUR% | %ETHEUR% \
      \| %date% | %kbd% | %battery%                 "
 
    -- general behavior
