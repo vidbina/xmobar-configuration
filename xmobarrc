@@ -8,8 +8,7 @@ Config {
    , bgColor =      "#212121"
    , fgColor =      "#bdbdbd"
    , position =     Top
-   , border =       BottomB
-   , borderColor =  "#000000"
+   , border =       NoBorder
    -- icons
    , iconOffset = 10
    , iconRoot = "/home/vid/.config/xmobar/icons"
