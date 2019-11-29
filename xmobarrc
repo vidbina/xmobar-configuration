@@ -1,7 +1,10 @@
 Config {
    -- appearance
-     font =         "xft:Mono:size=8:bold:antialias=true"
-   , additionalFonts = [ "xft:FontAwesome:size=9:antialias=true" ]
+     font =         "xft:DejaVu Sans Mono:size=9:bold:antialias=true"
+   , additionalFonts = [ "xft:Font Awesome 5 Free:size=9:antialias=true:style=Solid",
+                         "xft:Font Awesome 5 Free Solid:size=9:antialias=true:style=Solid",
+                         "xft:Font Awesome 5 Free Brands:size=9:antialias=true:style=Regular"
+                       ]
    , bgColor =      "#212121"
    , fgColor =      "#bdbdbd"
    , position =     Top
