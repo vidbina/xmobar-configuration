@@ -106,8 +106,15 @@ Config {
                               ] 10
 
         -- battery monitor
-        , Run Battery         [ "--template", "<leftipat>"
+        , Run BatteryP        [ "BAT0" ]
+                              [ "--template", "<leftipat>"
                               , "--"
+                              , "-L", "1"     -- low power (watts) threshold (defaut: 10)
+                              , "-H", "12"     -- high power (watts) threshold (defaut: 10)
+                              , "-l", "red"    -- color to display power lower than the -L threshold
+                              , "-m", "yellow" -- color to display power lower than the -H threshold
+                              , "-h", "green"  -- color to display power higher than the -H threshold
+                              , "-p", "blue"   -- positive power (battery charging)
                               , "--on-icon-pattern", "<fc=#8bc34a><fn=1></fn></fc> <left>% <fn=1></fn> <timeleft>"
                               , "--off-icon-pattern", "<fc=#ffc107><fn=1></fn></fc> <left>%"
                               , "--idle-icon-pattern", "<fc=#03a9f4><fn=1></fn></fc>" -- power plug
