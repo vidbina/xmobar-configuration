@@ -19,7 +19,6 @@ Config {
      "%StdinReader% \
      \| %multicpu% | %coretemp% | %memory% | %default:Master% | %dynnetwork% }\
      \{ \
-     -- <fc=#ECBE13><fn=1></fn></fc> %BTCEUR% | %ETHEUR% \
      \| %datetimeBerlin% %datetimeHere% | %kbd% | %battery%                 "
 
    -- general behavior
