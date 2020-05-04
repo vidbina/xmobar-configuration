@@ -130,9 +130,9 @@ Config {
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
         , Run DateZone       "%H:%M:%S" "de_US.UTF-8" "US/Eastern" "datetimeET" 10
         , Run DateZone       "%H:%M:%S" "en_US.UTF-8" "US/Pacific" "" 10
-        , Run DateZone       "BER: %a %D %H:%M:%S" "de_DE.UTF-8" "Europe/Berlin" "datetimeBerlin" 10
+        , Run DateZone       "BER: %a %d.%m.%Y %H:%M:%S" "de_DE.UTF-8" "Europe/Berlin" "datetimeBerlin" 10
         , Run DateZone       "AMS: %H:%M" "nl_NL.UTF-8" "Europe/Amsterdam" "datetimeAMS" 10
-        , Run DateZone       "%a %D <fc=#ECBE13>%H:%M</fc>" "de_US.UTF-8" "" "datetimeHere" 10
+        , Run DateZone       "<fc=#ECBE13>%a %d</fc>.%m.%Y <fc=#ECBE13>%H:%M</fc>" "de_US.UTF-8" "" "datetimeHere" 10
         -- Example from https://github.com/jaor/xmobar/issues/393
         , Run DateZone "<fc=lightblue>%H:%M Z</fc>" "en_US" "GMT" "utc" 10
         , Run Date           "<fc=#03a9f4><fn=1></fn> %Y-%m-%d (%a) <fn=1></fn> %T</fc>" "datetime" 10
