@@ -11,7 +11,7 @@ Config {
    , border =       NoBorder
    -- icons
    , iconOffset = 10
-   , iconRoot = "/home/vid/.config/xmobar/icons"
+   , iconRoot = "/home/vidbina/.config/xmobar/icons"
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
@@ -53,9 +53,7 @@ Config {
                               ] 36000
 
         -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork      [ "--template" , "<dev>: \
-                                                \<fc=#03a9f4><fn=1></fn></fc> <tx> \
-                                                \<fc=#03a9f4><fn=1></fn></fc> <rx>"
+        , Run DynNetwork      [ "--template" , "<dev>: <fc=#03a9f4><fn=1></fn></fc> <tx> <fc=#03a9f4><fn=1></fn></fc> <rx>"
                               , "--Low"      , "1000"       -- units: B/s
                               , "--High"     , "5000"       -- units: B/s
                               , "--low"      , "#4caf50"
