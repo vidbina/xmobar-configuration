@@ -140,7 +140,8 @@ Config {
 
         -- keyboard layout indicator
         , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B><fn=1></fn> DV</fc>")
-                             , ("us"         , "<fc=#8B0000><fn=1></fn> US</fc>")
+                             , ("us"         , "<fc=#FF1493><fn=1></fn> US</fc>")
+                             , ("us(intl)"   , "<fc=#FF1493><fn=1></fn> EU</fc>")
                              ]
         , Run PipeReader "BTC/EUR:/tmp/crypto/BTC-EUR" "BTCEUR"
         , Run PipeReader "ETH/EUR:/tmp/crypto/ETH-EUR" "ETHEUR"
