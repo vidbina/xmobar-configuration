@@ -3,7 +3,7 @@
 
   outputs = { self }: {
     # home.file
-    nixosModule = { config, ... }: {
+    nixosModule = {
       ".config/xmobar".source = ./.;
     };
   };
