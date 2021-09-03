@@ -3,10 +3,7 @@
 
   outputs = { self }: {
     nixosModule = { config, username, ... }: {
-      config.home-manager.users."${username}".programs.xmobar = {
-        enable = true;
-        extraConfig = ./xmobarrc;
-      };
+      config.home.file.".config/xmobar".source = ./.;
     };
   };
 }
