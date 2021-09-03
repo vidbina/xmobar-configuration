@@ -3,9 +3,9 @@
 
   outputs = { self }: {
     nixosModule = { config, username, ... }: {
-      config.home-manager.users."${username}" = {
-        program.xmobar.enable = true;
-        program.xmobar.extraConfig = ./xmobarrc;
+      config.home-manager.users."${username}".programs.xmobar = {
+        enable = true;
+        extraConfig = ./xmobarrc;
       };
     };
   };
