@@ -17,7 +17,7 @@ Config {
    , alignSep = "}{"  -- separator between left-right alignment
    , template =
      "%StdinReader% \
-     \| %multicpu% | %coretemp% | %memory% | %default:Master% | %dynnetwork% }\
+     \| %default:Master% | %memory% %coretemp% %multicpu% | }\
      \{ \
      \| %datetimeBerlin% %datetimeHere% | %kbd% | %battery%                 "
 
@@ -52,15 +52,6 @@ Config {
                                               \<fc=#4682B4><pressure></fc>hPa"
                               ] 36000
 
-        -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork      [ "--template" , "<dev>: <fc=#03a9f4><fn=1></fn></fc> <tx> <fc=#03a9f4><fn=1></fn></fc> <rx>"
-                              , "--Low"      , "1000"       -- units: B/s
-                              , "--High"     , "5000"       -- units: B/s
-                              , "--low"      , "#4caf50"
-                              , "--normal"   , "#ffc107"
-                              , "--high"     , "#e91e63"
-                              , "-S", "True"
-                              ] 10
 
         -- cpu activity monitor
         , Run MultiCpu        [ "--template"
@@ -134,18 +125,15 @@ Config {
         , Run DateZone       "AMS: %H:%M" "nl_NL.UTF-8" "Europe/Amsterdam" "datetimeAMS" 10
         , Run DateZone       "<fc=#ECBE13>%a %d</fc>.%m.%Y <fc=#ECBE13>%H:%M</fc>" "de_US.UTF-8" "" "datetimeHere" 10
         -- Example from https://github.com/jaor/xmobar/issues/393
-        , Run DateZone "<fc=lightblue>%H:%M Z</fc>" "en_US" "GMT" "utc" 10
+        , Run DateZone       "<fc=lightblue>%H:%M Z</fc>" "en_US" "GMT" "utc" 10
         , Run Date           "<fc=#03a9f4><fn=1></fn> %Y-%m-%d (%a) <fn=1></fn> %T</fc>" "datetime" 10
-        , Run DateZone "%a %H:%M:%S" "de_DE.UTF-8" "Europe/Vienna" "viennaTime" 10
+        , Run DateZone       "%a %H:%M:%S" "de_DE.UTF-8" "Europe/Vienna" "viennaTime" 10
 
         -- keyboard layout indicator
         , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B><fn=1></fn> DV</fc>")
                              , ("us"         , "<fc=#FF1493><fn=1></fn> US</fc>")
                              , ("us(intl)"   , "<fc=#FF1493><fn=1></fn> EU</fc>")
                              ]
-        , Run PipeReader "BTC/EUR:/tmp/crypto/BTC-EUR" "BTCEUR"
-        , Run PipeReader "ETH/EUR:/tmp/crypto/ETH-EUR" "ETHEUR"
-        , Run PipeReader "LTC/EUR:/tmp/crypto/LTC-EUR" "LTCEUR"
         , Run StdinReader
         ],
    }
