@@ -1,12 +1,12 @@
 Config {
    -- appearance
-     font =         "xft:DejaVu Sans Mono:size=9:bold:antialias=true"
-   , additionalFonts = [ "xft:Font Awesome 5 Free:size=9:antialias=true:style=Solid",
-                         "xft:Font Awesome 5 Free Solid:size=9:antialias=true:style=Solid",
-                         "xft:Font Awesome 5 Free Brands:size=9:antialias=true:style=Regular"
+     font =         "xft:DejaVu Sans Mono:size=16:bold:antialias=true"
+   , additionalFonts = [ "xft:Font Awesome 5 Free:size=16:antialias=true:style=Solid",
+                         "xft:Font Awesome 5 Free Solid:size=16:antialias=true:style=Solid",
+                         "xft:Font Awesome 5 Free Brands:size=16:antialias=true:style=Regular"
                        ]
-   , bgColor =      "#212121"
-   , fgColor =      "#bdbdbd"
+   , bgColor =      "#000000"
+   , fgColor =      "#ffffff"
    , position =     Top
    , border =       NoBorder
    -- icons
@@ -16,8 +16,7 @@ Config {
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
    , template =
-     "%StdinReader% \
-     \| %default:Master% | %memory% %coretemp% %multicpu% | }\
+     "%StdinReader% | %default:Master% | %memory% %multicoretemp% %multicpu% | }\
      \{ \
      \| %datetimeBerlin% %datetimeHere% | %kbd% | %battery%                 "
 
@@ -52,18 +51,19 @@ Config {
                                               \<fc=#4682B4><pressure></fc>hPa"
                               ] 36000
 
+        ---- network activity monitor (dynamic interface resolution)
+        --, Run DynNetwork      [ "--template" , "<dev>: <fc=#03a9f4><fn=1></fn></fc> <tx> <fc=#03a9f4><fn=1></fn></fc> <rx>"
+        --                      , "--Low"      , "1000"       -- units: B/s
+        --                      , "--High"     , "5000"       -- units: B/s
+        --                      , "--low"      , "#4caf50"
+        --                      , "--normal"   , "#ffc107"
+        --                      , "--high"     , "#e91e63"
+        --                      , "-S", "True"
+        --                      ] 10
 
         -- cpu activity monitor
         , Run MultiCpu        [ "--template"
-                              , "<fc=#03a9f4><fn=1></fn></fc> <autototal>"
-                              --, "--load-icon-patterns", "<"
-                              --, "multi<fn=1></fn><total>" -- "
-                              -- , "<fn=1></fn> <total>" -- "
-                              --, "<fn=1></fn> <total0>% <total1>% <total2>% <total3>%" -- "
-                              --, "<fn=1></fn><total0>%|\
-                              --  \<fn=1></fn><total1>%|\
-                              --  \<fn=1></fn><total2>%|\
-                              --  \<fn=1></fn><total3>%"
+                              , "<fn=1>\61459</fn> <vbar>"
                               , "--Low"      , "50"         -- units: %
                               , "--High"     , "85"         -- units: %
                               , "--low"      , "#4caf50"
@@ -74,8 +74,7 @@ Config {
         --                      ] 5
         -- cpu core temperature monitor
         , Run CoreTemp        [ "--template"
-                              --, "<fn=1></fn> <core0>°C <fn=1></fn> <core1>°C <fn=1></fn> <core2>°C <fn=1></fn> <core3>°C"
-                              , "<fc=#03a9f4><fn=1></fn></fc> <core0>°C <core1>°C"
+                              , "<fc=#03a9f4><fn=1>\62151</fn></fc> <core0>°C <core1>°C"
                               , "--Low"      , "40"        -- units: °C
                               , "--High"     , "60"        -- units: °C
                               , "--low"      , "#4caf50"
@@ -84,8 +83,14 @@ Config {
                               , "-b", "red"
                               ] 50
 
+        -- cpu core temperature monitor
+        , Run MultiCoreTemp   ["-t", "<fn=1>\62151</fn> <avg>°C <avgpc>%"
+	                      , "-L", "60", "-H", "80"
+	                      , "-l", "green", "-n", "yellow", "-h", "red"
+	                      , "--", "--mintemp", "20", "--maxtemp", "100"] 50
+
         -- memory usage monitor
-        , Run Memory          [ "--template" ,"<fc=#03a9f4><fn=1></fn></fc> <usedratio>%"
+        , Run Memory          [ "--template" ,"<fn=1>\62171</fn> <usedratio>% (<cache>M)"
                               , "--Low"      , "20"        -- units: %
                               , "--High"     , "90"        -- units: %
                               , "--low"      , "#4caf50"
@@ -103,18 +108,16 @@ Config {
                               , "-m", "yellow" -- color to display power lower than the -H threshold
                               , "-h", "green"  -- color to display power higher than the -H threshold
                               , "-p", "blue"   -- positive power (battery charging)
-                              , "--on-icon-pattern", "<fc=#8bc34a><fn=1></fn></fc> <left>% <fn=1></fn> <timeleft>"
-                              , "--off-icon-pattern", "<fc=#ffc107><fn=1></fn></fc> <left>%"
-                              , "--idle-icon-pattern", "<fc=#03a9f4><fn=1></fn></fc>" -- power plug
+                              , "--on-icon-pattern", "<fc=#8bc34a><fn=1>\62017</fn></fc> <left>% <fn=1>\62035</fn> <timeleft>"
+                              , "--off-icon-pattern", "<fc=#ffc107><fn=1>\62018</fn></fc> <left>%"
+                              , "--idle-icon-pattern", "<fc=#03a9f4><fn=1>\61926</fn></fc>" -- power plug
                               ] 10
 
         , Run Volume          "default" "Master"
-                              [ "--template" , "<volume>% <status>"
+                              [ "--template" , "<status> <volume>%"
                               , "--"
-                              --"-0", "",
-                              --"--off", "",
-                              , "--on", "<fn=1></fn>"
-                              , "--off", "<fn=1></fn>"
+                              , "--on", "<fn=1>\61480</fn>"
+                              , "--off", "<fn=1>\61478</fn>"
                               ] 10
 
         -- time and date indicator
@@ -126,15 +129,13 @@ Config {
         , Run DateZone       "<fc=#ECBE13>%a %d</fc>.%m.%Y <fc=#ECBE13>%H:%M</fc>" "de_US.UTF-8" "" "datetimeHere" 10
         -- Example from https://github.com/jaor/xmobar/issues/393
         , Run DateZone       "<fc=lightblue>%H:%M Z</fc>" "en_US" "GMT" "utc" 10
-        , Run Date           "<fc=#03a9f4><fn=1></fn> %Y-%m-%d (%a) <fn=1></fn> %T</fc>" "datetime" 10
-        , Run DateZone       "%a %H:%M:%S" "de_DE.UTF-8" "Europe/Vienna" "viennaTime" 10
 
         -- keyboard layout indicator
-        , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B><fn=1></fn> DV</fc>")
-                             , ("us"         , "<fc=#FF1493><fn=1></fn> US</fc>")
-                             , ("us(intl)"   , "<fc=#FF1493><fn=1></fn> EU</fc>")
+        , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B><fn=1>\61724</fn> DV</fc>")
+                             , ("us"         , "<fc=#FF1493><fn=1>\61724</fn> US</fc>")
+                             , ("us(intl)"   , "<fc=#FF1493><fn=1>\61724</fn> EU</fc>")
                              ]
         , Run StdinReader
-        ],
+        ]
    }
 -- vim: ft=haskell
