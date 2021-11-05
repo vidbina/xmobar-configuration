@@ -18,7 +18,7 @@ Config {
    , template =
      "%StdinReader% | %default:Master% | %memory% %multicoretemp% %multicpu% | }\
      \{ \
-     \| %datetimeBerlin% %datetimeHere% | %kbd% | %battery%                 "
+     \| %datetimeBerlin% | %kbd% | %battery%                 "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
