@@ -121,12 +121,8 @@ Config {
                               ] 10
 
         -- time and date indicator
-        --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run DateZone       "%H:%M:%S" "de_US.UTF-8" "US/Eastern" "datetimeET" 10
-        , Run DateZone       "%H:%M:%S" "en_US.UTF-8" "US/Pacific" "" 10
-        , Run DateZone       "BER: %a %d.%m.%Y %H:%M:%S" "de_DE.UTF-8" "Europe/Berlin" "datetimeBerlin" 10
-        , Run DateZone       "AMS: %H:%M" "nl_NL.UTF-8" "Europe/Amsterdam" "datetimeAMS" 10
-        , Run DateZone       "<fc=#ECBE13>%a %d</fc>.%m.%Y <fc=#ECBE13>%H:%M</fc>" "de_US.UTF-8" "" "datetimeHere" 10
+        , Run DateZone       "BER: %a %d.%m <fc=#FF1493>%H:%M</fc>" "de_DE.UTF-8" "Europe/Berlin" "datetimeBerlin" 10
+        , Run DateZone       "<fc=#ECBE13>%a %d</fc>.%m <fc=#FF1493>%H:%M</fc>" "de_US.UTF-8" "America/Curacao" "datetimeHere" 10
         -- Example from https://github.com/jaor/xmobar/issues/393
         , Run DateZone       "<fc=lightblue>%H:%M Z</fc>" "en_US" "GMT" "utc" 10
 
