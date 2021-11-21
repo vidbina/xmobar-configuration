@@ -18,7 +18,7 @@ Config {
    , template =
      "%StdinReader% | %default:Master% | %memory% %multicoretemp% %multicpu% | }\
      \{ \
-     \| %datetimeBerlin% | %kbd% | %battery%                 "
+     \| %datetimeBerlin% %datetimeHere% | %kbd% | %battery%                 "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -121,8 +121,8 @@ Config {
                               ] 10
 
         -- time and date indicator
-        , Run DateZone       "BER: %a %d.%m <fc=#FF1493>%H:%M</fc>" "de_DE.UTF-8" "Europe/Berlin" "datetimeBerlin" 10
-        , Run DateZone       "<fc=#ECBE13>%a %d</fc>.%m <fc=#FF1493>%H:%M</fc>" "de_US.UTF-8" "America/Curacao" "datetimeHere" 10
+        , Run DateZone       "<fn=1>\61461</fn> BER: %a %d.%m <fc=#FF1493>%H:%M</fc>" "de_DE.UTF-8" "Europe/Berlin" "datetimeBerlin" 10
+        , Run DateZone       "<fn=1>\62070</fn> <fc=#ECBE13>%a %d</fc>.%m <fc=#FF1493>%H:%M</fc>" "de_US.UTF-8" "Asia/Bangkok" "datetimeHere" 10
         -- Example from https://github.com/jaor/xmobar/issues/393
         , Run DateZone       "<fc=lightblue>%H:%M Z</fc>" "en_US" "GMT" "utc" 10
 
