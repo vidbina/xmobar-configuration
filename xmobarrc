@@ -1,9 +1,9 @@
 Config {
    -- appearance
-     font =         "xft:DejaVu Sans Mono:size=16:bold:antialias=true"
-   , additionalFonts = [ "xft:Font Awesome 5 Free:size=16:antialias=true:style=Solid",
-                         "xft:Font Awesome 5 Free Solid:size=16:antialias=true:style=Solid",
-                         "xft:Font Awesome 5 Free Brands:size=16:antialias=true:style=Regular"
+     font =         "xft:DejaVu Sans Mono:size=20:bold:antialias=true"
+   , additionalFonts = [ "xft:Font Awesome 5 Free:size=20:antialias=true:style=Solid",
+                         "xft:Font Awesome 5 Free Solid:size=20:antialias=true:style=Solid",
+                         "xft:Font Awesome 5 Free Brands:size=20:antialias=true:style=Regular"
                        ]
    , bgColor =      "black"
    , fgColor =      "#707070"
