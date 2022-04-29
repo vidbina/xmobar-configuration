@@ -16,9 +16,9 @@ Config {
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
    , template =
-     "%XMonadLog% %default:Master% %memory% %multicoretemp% %multicpu% | }\
+     "%XMonadLog% }\
      \{ \
-     \| %datetimeBerlin% | %datetimeHere% | %utc% | %kbd% | %battery%                 "
+     \| %default:Master% %memory% %multicoretemp% %multicpu% | %datetimeBerlin% | %datetimeHere% | %utc% | %kbd% | %battery%                 "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
