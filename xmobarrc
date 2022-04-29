@@ -16,7 +16,7 @@ Config {
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
    , template =
-     "%StdinReader% | %default:Master% | %memory% %multicoretemp% %multicpu% | }\
+     "%XMonadLog% %default:Master% %memory% %multicoretemp% %multicpu% | }\
      \{ \
      \| %datetimeBerlin% %datetimeHere% | %kbd% | %battery%                 "
 
@@ -44,8 +44,11 @@ Config {
    --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
    , commands = 
 
+
+        [ Run XMonadLog
+
         -- weather monitor
-        [ Run Weather "TXL"   [ "--template", "<skyCondition> | \
+        , Run Weather "TXL"   [ "--template", "<skyCondition> | \
                                               \<fc=#4682B4><tempC></fc>°C | \
                                               \<fc=#4682B4><rh></fc>% | \
                                               \<fc=#4682B4><pressure></fc>hPa"
@@ -131,7 +134,6 @@ Config {
                              , ("us"         , "<fc=#FF1493><fn=1>\61724</fn> US</fc>")
                              , ("us(intl)"   , "<fc=#FF1493><fn=1>\61724</fn> EU</fc>")
                              ]
-        , Run StdinReader
         ]
    }
 -- vim: ft=haskell
