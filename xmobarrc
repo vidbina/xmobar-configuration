@@ -85,10 +85,15 @@ Config {
         -- cpu core temperature monitor
         , Run MultiCoreTemp   ["-t", "<fn=1>\62151</fn> <avg>°C <avgpc>%"
 	                      , "-L", "60", "-H", "80"
+                              , "-h", "red"
+                              , "-w", "3"
+                              , "-c", " "
 	                      , "--", "--mintemp", "20", "--maxtemp", "100"] 50
 
         -- memory usage monitor
-        , Run Memory          [ "--template" ,"<fn=1>\62171</fn> <usedratio>% (<cache>M)"
+        , Run Memory          [ "--template" ,"<fn=1>\62171</fn> <usedratio>%"
+                              , "-w", "3"
+                              , "-c", " "
                               , "--Low"      , "20"        -- units: %
                               , "--High"     , "90"        -- units: %
                               ] 10
@@ -96,6 +101,8 @@ Config {
         -- battery monitor
         , Run BatteryP        [ "BAT0" ]
                               [ "--template", "<leftipat>"
+                              , "-w", "3"
+                              , "-c", " "
                               , "--"
                               , "-L", "1"     -- low power (watts) threshold (defaut: 10)
                               , "-H", "12"     -- high power (watts) threshold (defaut: 10)
@@ -109,7 +116,9 @@ Config {
                               ] 10
 
         , Run Volume          "default" "Master"
-                              [ "--template" , "<status> <volume>%"
+                              [ "--template", "<status> <volume>%"
+                              , "-w", "3"
+                              , "-c", " "
                               , "--"
                               , "--on", "<fn=1>\61480</fn>"
                               , "--off", "<fn=1>\61478</fn>"
