@@ -18,7 +18,7 @@ Config {
    , template =
      "%XMonadLog% }\
      \{ \
-     \| %default:Master% %memory% %multicoretemp% %multicpu% | %datetimeBerlin% | %datetimeHere% | %utc% | %kbd% | %battery%                 "
+     \| %default:Master% %memory% %multicoretemp% %multicpu% | %datetimeHere% | %datetimeBerlin% | %datetimeUTC% | %kbd% | %battery%                 "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -125,10 +125,9 @@ Config {
                               ] 10
 
         -- time and date indicator
-        , Run DateZone       "<fn=1>\61461</fn> %d.%m <fc=#FF1493>%H:%M</fc> BER" "de_DE.UTF-8" "Europe/Berlin" "datetimeBerlin" 10
-        , Run DateZone       "<fn=1>\62070</fn> <fc=#d0bc00>%a %d</fc>.%m <fc=#d0bc00>%H:%M</fc>" "de_US.UTF-8" "" "datetimeHere" 10
-        -- Example from https://github.com/jaor/xmobar/issues/393
-        , Run DateZone       "%H:%M Z" "en_US" "GMT" "utc" 10
+        , Run DateZone       "<fc=#d0bc00>%a %d</fc>.%m <fc=#FF1493>%H:%M</fc> BKK" "en_US.UTF-8" "Asia/Bangkok"  "datetimeHere"   10
+        , Run DateZone       "<fc=#d0bc00>%a %d</fc>.%m <fc=#d0bc00>%H:%M</fc> BER" "de_DE.UTF-8" "Europe/Berlin" "datetimeBerlin" 10
+        , Run DateZone       "<fc=#d0bc00>%a %d</fc>.%m <fc=#d0bc00>%H:%M</fc> Z"   "de_US.UTF-8" ""              "datetimeUTC"    10
 
         -- keyboard layout indicator
         , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B><fn=1>\61724</fn> DV</fc>")
