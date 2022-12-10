@@ -7,7 +7,7 @@ Config {
                        ]
    , bgColor =      "black"
    , fgColor =      "#707070"
-   , position =     Top
+   , position =     TopP 0 150
    , border =       NoBorder
    -- icons
    , iconOffset = 10
@@ -18,7 +18,7 @@ Config {
    , template =
      "%XMonadLog% }\
      \{ \
-     \| %default:Master% %memory% %multicoretemp% %multicpu% | %datetimeHere% | %datetimeBerlin% | %datetimeUTC% | %kbd% | %battery%                 "
+     \| %default:Master% %memory% %multicoretemp% %multicpu% | %datetimeHere% | %datetimeBerlin% | %datetimeUTC% | %kbd% | %battery%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
