@@ -42,27 +42,10 @@ Config {
    --   The --template option controls how the plugin is displayed. Text
    --   color can be set by enclosing in <fc></fc> tags. For more details
    --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
-   , commands = 
+   , commands =
 
 
         [ Run XMonadLog
-
-        -- weather monitor
-        , Run Weather "TXL"   [ "--template", "<skyCondition> | \
-                                              \<fc=#4682B4><tempC></fc>°C | \
-                                              \<fc=#4682B4><rh></fc>% | \
-                                              \<fc=#4682B4><pressure></fc>hPa"
-                              ] 36000
-
-        ---- network activity monitor (dynamic interface resolution)
-        --, Run DynNetwork      [ "--template" , "<dev>: <fc=#03a9f4><fn=1></fn></fc> <tx> <fc=#03a9f4><fn=1></fn></fc> <rx>"
-        --                      , "--Low"      , "1000"       -- units: B/s
-        --                      , "--High"     , "5000"       -- units: B/s
-        --                      , "--low"      , "#4caf50"
-        --                      , "--normal"   , "#ffc107"
-        --                      , "--high"     , "#e91e63"
-        --                      , "-S", "True"
-        --                      ] 10
 
         -- cpu activity monitor
         , Run MultiCpu        [ "--template"
